@@ -1,5 +1,5 @@
 {
-    "name": "CoffeeButton",
+    "name": "BeckyButton",
     "description": "Parse election result XML files into json and upload to S3",
     "memory": 128,
     "timeout": 3,
