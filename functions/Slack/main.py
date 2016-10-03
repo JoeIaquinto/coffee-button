@@ -2,7 +2,7 @@ import os
 import requests
 import pytz
 import datetime
-
+import random
 from enum import Enum
 
 
@@ -30,18 +30,22 @@ def handle(event, context):
 
     if event['clickType'] == str(ButtonClickType.Single):
         now = datetime.datetime.now(tz=pytz.timezone('US/Eastern'))
-        ready_datetime = now + datetime.timedelta(minutes=5)
+        ready_datetime = now + datetime.timedelta(minutes=90)
         ready_time = ready_datetime.strftime('%l:%M%p').lower().strip()
+        msg = ['Becky has been walked.','The bitch got walked.','Becky got a walkie','BECKERONI IS WALKERONI','Doggo Walko']
+        r = random.randint(0,len(msg))
         requests.post(slack_webhook_url, json={
-            'text': 'Coffee is brewing and will be ready at {}!'.format(ready_time),  # NOQA
+            'text': '{} Next time you should walk her is around {}.'.format(msg,ready_time),  # NOQA
             'channel': slack_channel})
 
     if event['clickType'] == str(ButtonClickType.Double):
+        msg = ['Becky has been fed.','The bitch got fed.','Becky got her din din.','BECKERONI IS EATERONI','Dinnah Dog']
+        r = random.randint(0,len(msg))
         requests.post(slack_webhook_url, json={
-            'text': 'Threat Level Jack-O-Lantern! I repeat: Threat Level Jack-O-Lantern. We are out of coffee.',  # NOQA
+            'text': msg[r],  # NOQA
             'channel': slack_channel})
 
     if event['clickType'] == str(ButtonClickType.Long):
         requests.post(slack_webhook_url, json={
-            'text': 'Fresh coffee is ready!',
+            'text': 'Someone take care of little Beckeroni',
             'channel': slack_channel})
