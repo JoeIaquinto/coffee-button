@@ -32,14 +32,14 @@ def handle(event, context):
         now = datetime.datetime.now(tz=pytz.timezone('US/Eastern'))
         ready_datetime = now + datetime.timedelta(minutes=90)
         ready_time = ready_datetime.strftime('%l:%M%p').lower().strip()
-        msg = ['Becky has been walked.','The bitch got walked.','Becky got a walkie','BECKERONI IS WALKERONI','Doggo Walko']
+        msg = ['Becky has been walked.', 'The bitch got walked.', 'Becky got a walkie', 'BECKERONI IS WALKERONI', 'Doggo Walko']
         r = random.randint(0,len(msg))
         requests.post(slack_webhook_url, json={
             'text': '{} Next time you should walk her is around {}.'.format(msg,ready_time),  # NOQA
             'channel': slack_channel})
 
     if event['clickType'] == str(ButtonClickType.Double):
-        msg = ['Becky has been fed.','The bitch got fed.','Becky got her din din.','BECKERONI IS EATERONI','Dinnah Dog']
+        msg = ['Becky has been fed.', 'The bitch got fed.', 'Becky got her din din.', 'BECKERONI IS EATERONI', 'Dinnah Dog']
         r = random.randint(0,len(msg))
         requests.post(slack_webhook_url, json={
             'text': msg[r],  # NOQA
